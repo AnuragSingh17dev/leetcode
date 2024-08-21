@@ -16,7 +16,6 @@ class Solution(object):
                 
                 if board[3*(row//3) + i//3][3*(col//3) + i%3] == ch:
                     return False
-            
             return True
             
         def solveGrid(row, col):
@@ -37,7 +36,5 @@ class Solution(object):
                 return False
             else:
                 return solveGrid(row, col + 1)
-            
-            
-        
+
         solveGrid(0, 0)
