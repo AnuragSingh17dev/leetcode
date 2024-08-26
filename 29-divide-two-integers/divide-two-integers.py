@@ -8,7 +8,7 @@ class Solution(object):
         if dividend == -2**31 and divisor == -1:
             return 2**31 - 1
 
-        op = 1 if (dividend > 0) == (divisor > 0) else -1
+        opr = 1 if (dividend > 0) == (divisor > 0) else -1
 
         abs_dividend = abs(dividend)
         abs_divisor = abs(divisor)
@@ -24,4 +24,4 @@ class Solution(object):
             abs_dividend -= temp_divisor
             quotient += multiple
 
-        return op * quotient
+        return opr * quotient
