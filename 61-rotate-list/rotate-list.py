@@ -10,25 +10,19 @@ class Solution(object):
         :type k: int
         :rtype: ListNode
         """      
-        if not head:
-            return None
+        if not head or not k: 
+            return head
         
-        last_element = head
-        list_length = 1
-
-        while ( last_element.next ):
+        last_element, temp_list = head, 1
+        while last_element.next:
             last_element = last_element.next
-            list_length += 1
-
-        k = k % list_length
+            temp_list += 1
             
         last_element.next = head
-        
-        temp_node = head
-        for _ in range(list_length - k - 1 ):
-            temp_node = temp_node.next
-
-        final_list = temp_node.next
-        temp_node.next = None
+        for _ in range(temp_list - k % temp_list):
+            last_element = last_element.next
+            
+        final_list = last_element.next
+        last_element.next = None
         
         return final_list
