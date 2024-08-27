@@ -28,7 +28,7 @@ class Solution(object):
         for _ in range(list_length - k - 1 ):
             temp_node = temp_node.next
 
-        final_list = temp_node.next
+        final = temp_node.next
         temp_node.next = None
         
-        return final_list
+        return final
