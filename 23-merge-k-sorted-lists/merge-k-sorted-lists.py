@@ -9,20 +9,32 @@ class Solution(object):
         :type lists: List[ListNode]
         :rtype: ListNode
         """
-        min_heap = []
-        for i in range(len(lists)):
-            if lists[i]:
-                heapq.heappush(min_heap, (lists[i].val, i))
-
-        temp_node = ListNode(0)
-        current_node = temp_node
-        
-        while min_heap:
-            val, list_index = heapq.heappop(min_heap)
-            current_node.next = lists[list_index]
-            current_node = current_node.next
-            lists[list_index] = lists[list_index].next
-            if lists[list_index]:
-                heapq.heappush(min_heap, (lists[list_index].val, list_index))
-
-        return temp_node.next
+        if not lists:
+            return None
+        if len(lists) == 1:
+            return lists[0]
+        mid = len(lists) // 2
+        l, r = self.mergeKLists(lists[:mid]), self.mergeKLists(lists[mid:])
+        return self.merge(l, r)
+    
+    def merge(self, l, r):
+        dummy = p = ListNode()
+        while l and r:
+            if l.val < r.val:
+                p.next = l
+                l = l.next
+            else:
+                p.next = r
+                r = r.next
+            p = p.next
+        p.next = l or r
+        return dummy.next
+    
+    def merge1(self, l, r):
+        if not l or not r:
+            return l or r
+        if l.val< r.val:
+            l.next = self.merge(l.next, r)
+            return l
+        r.next = self.merge(l, r.next)
+        return r
