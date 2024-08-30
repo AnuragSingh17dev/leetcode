@@ -16,13 +16,13 @@ class Solution(object):
 
         temp_node = ListNode(0)
         current_node = temp_node
-
+        
         while min_heap:
-            val, index = heapq.heappop(min_heap)
-            current_node.next = lists[index]
+            val, list_index = heapq.heappop(min_heap)
+            current_node.next = lists[list_index]
             current_node = current_node.next
-            lists[index] = lists[index].next
-            if lists[index]:
-                heapq.heappush(min_heap, (lists[index].val, index))
+            lists[list_index] = lists[list_index].next
+            if lists[list_index]:
+                heapq.heappush(min_heap, (lists[list_index].val, list_index))
 
         return temp_node.next
