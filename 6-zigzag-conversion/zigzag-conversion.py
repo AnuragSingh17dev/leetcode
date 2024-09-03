@@ -5,16 +5,18 @@ class Solution(object):
         :type numRows: int
         :rtype: str
         """
-        if numRows < 2:
+        if numRows == 1 or numRows >= len(s):
             return s
-        row_index = 0
-        Pattern = [""]*numRows
-        for letter in s:
-            if row_index == numRows-1:
-                grow = False
-            elif row_index == 0:
-                grow = True 
-            Pattern[row_index] += letter
-            row_index = (row_index+1) if grow else row_index-1
-			                            						
-        return "".join(Pattern)
+
+        Pattern = [''] * numRows
+        row_index, move = 0, 1
+
+        for x in s:
+            Pattern[row_index] += x
+            if row_index == 0:
+                move = 1
+            elif row_index == numRows -1:
+                move = -1
+            row_index += move
+
+        return ''.join(Pattern)
