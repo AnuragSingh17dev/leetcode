@@ -7,16 +7,17 @@ class Solution(object):
         """
         if numRows == 1 or numRows >= len(s):
             return s
-
-        Pattern = [''] * numRows
-        row_index, move = 0, 1
-
-        for x in s:
-            Pattern[row_index] += x
-            if row_index == 0:
-                move = 1
-            elif row_index == numRows -1:
-                move = -1
-            row_index += move
-
-        return ''.join(Pattern)
+        
+        pattern = [''] * numRows
+        initial = 0
+        move = False
+        
+        for letter in s:
+            pattern[initial] += letter
+            
+            if initial == 0 or initial == numRows - 1:
+                move = not move
+            
+            initial += 1 if move else -1
+        
+        return ''.join(pattern)
