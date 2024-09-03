@@ -9,14 +9,14 @@ class Solution(object):
             return s
 
         Pattern = [''] * numRows
-        index, move = 0, 1
+        row_index, move = 0, 1
 
         for x in s:
-            Pattern[index] += x
-            if index == 0:
+            Pattern[row_index] += x
+            if row_index == 0:
                 move = 1
-            elif index == numRows -1:
+            elif row_index == numRows -1:
                 move = -1
-            index += move
+            row_index += move
 
         return ''.join(Pattern)
