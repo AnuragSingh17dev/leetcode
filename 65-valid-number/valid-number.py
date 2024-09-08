@@ -4,25 +4,16 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        num, exp, sign, dec = False, False, False, False
-        for c in s:
-            if c >= '0' and c <= '9':
-                num = True     
-            elif c == 'e' or c == 'E':
-                if exp or not num: 
-                    return False
-                else: 
-                    exp, num, sign, dec = True, False, False, False
-            elif c == '+' or c == '-':
-                if sign or num or dec: 
-                    return False
-                else: 
-                    sign = True
-            elif c == '.':
-                if dec or exp: 
-                    return False
-                else: 
-                    dec = True
-            else: 
+        if s == "inf" or s == "-inf" or s == "+inf" or s == "-Infinity" or s == "infinity" or s == "INFINITY" or s == "+Infinity" or s == "Infinity" or s == "nan" or s == "-nan" or s == "+nan":
+            return False
+        try:
+            x = int(s)
+            return True
+        except:
+            try:
+                float(s)
+                return True
+            except:
                 return False
-        return num
+        else:
+            return False
