@@ -4,17 +4,18 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        st = [-1]
+        stack = [-1]
         max_length = 0
 
         for i in range(len(s)):
             if s[i] == "(":
-                st.append(i)
+                stack.append(i)
             else:
-                st.pop()
-                if len(st) == 0:
-                    st.append(i)
+                stack.pop()
+                if len(stack) == 0:
+                    stack.append(i)
                 else:
-                    max_length = max(max_length, i - st[-1])
+                    max_length = max(max_length, i - stack[-1])
+        
         return max_length
         
