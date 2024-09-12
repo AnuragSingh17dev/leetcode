@@ -4,15 +4,17 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        max_length = 0
         st = [-1]
+        max_length = 0
+
         for i in range(len(s)):
-            if s[i] == '(':
+            if s[i] == "(":
                 st.append(i)
             else:
                 st.pop()
-                if not st:
+                if len(st) == 0:
                     st.append(i)
                 else:
-                    max_length=max(max_length, i-st[-1])
+                    max_length = max(max_length, i - st[-1])
         return max_length
+        
