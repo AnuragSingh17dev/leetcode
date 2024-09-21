@@ -4,17 +4,19 @@ class Solution(object):
         :type matrix: List[List[int]]
         :rtype: None Do not return anything, modify matrix in-place instead.
         """
-        m, n, firstRowHasZero = len(matrix), len(matrix[0]), not all(matrix[0])
+        rows, cols = len(matrix), len(matrix[0])
+        rows_zero, cols_zero = set(), set()
 
-        for i in xrange(1, m):
-            for j in xrange(n):
+        for i in range(rows):
+            for j in range(cols):
                 if matrix[i][j] == 0:
-                    matrix[0][j] = matrix[i][0] = 0
+                    rows_zero.add(i)
+                    cols_zero.add(j)
 
-        for i in xrange(1, m):
-            for j in xrange(n - 1, -1, -1):
-                if matrix[i][0] == 0 or matrix[0][j] == 0:
-                    matrix[i][j] = 0
+        for row in rows_zero:
+            for j in range(cols):
+                matrix[row][j] = 0
 
-        if firstRowHasZero:
-            matrix[0] = [0] * n
+        for col in cols_zero:
+            for i in range(rows):
+                matrix[i][col] = 0
