@@ -6,8 +6,8 @@ class Solution(object):
         """
         if not nums:
             return 0
-        curSum = maxSum = nums[0]
-        for num in nums[1:]:
-            curSum = max(num, curSum + num)
-            maxSum = max(maxSum, curSum)
-        return maxSum
+        cur_max = sum_max = nums[0]
+        for val in nums[1:]:
+            cur_max = max(val, cur_max + val)
+            sum_max = max(sum_max, cur_max)
+        return sum_max
